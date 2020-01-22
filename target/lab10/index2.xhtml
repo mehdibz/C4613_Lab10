@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		>
+<h:head>
+</h:head>
+<h:body>
+	<f:view>
+		<h:form id="searchForm" >
+			
+			<h:panelGrid columns="2">
+				
+				<p:autoComplete value="#{employeeBean.employee.firstName}" completeMethod="#{employeeBean.completeText}" 
+						onchange="$('#searchForm').submit()"/>
+					
+			</h:panelGrid>
+			<h:commandLink value="logout" actionListener="#{employeeBean.logout}" />
+		</h:form>
+		
+		<h:form id="searchByDate">
+			<p:calendar value="#{employeeBean.employee.dob}" pattern="dd/MM/yyyy">
+				<p:ajax event="dateSelect" listener="#{employeeBean.onDateSelect}" />
+        	</p:calendar>
+		</h:form>
+		
+		<h:form id="tableForm">
+			<p:outputPanel id="employeeTableContainer">
+			<p:dataTable id="employeeDataTable" value="#{employeeBean.allEmployees}" var="e" lazy="true"  
+						rows="#{employeeBean.allEmployees.rowCount}"
+						paginator="true"
+						editable="true" 
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			            rowsPerPageTemplate="5,10,15" >
+
+				<p:column headerText="#{msgs.index}">
+					<h:outputText value="#{employeeBean.allEmployees.rowIndex}" />
+				</p:column>
+				
+				<p:column headerText="#{msgs.employeeIdHeader}" sortBy="e.id">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{e.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="idInput" value="#{e.id}"/>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				
+				<p:column headerText="#{msgs.name1Header}" 
+							filterBy="#{e.firstName}" 
+							filterMatchMode="contains" 
+							sortBy="#{e.firstName}" 
+							sortable="true"
+				>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{e.firstName}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="firstNameInput" value="#{e.firstName}"/>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.name2Header}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{e.lastName}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="lastNameInput" value="#{e.lastName}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.dob}" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{e.dob}"><f:convertDateTime pattern="yyyy/MM/dd"/></h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{e.dob}" pattern="dd/MM/yyyy"/>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:35px">
+            		<p:rowEditor />
+        		</p:column>
+			</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+	</f:view>
+</h:body>
+</html>

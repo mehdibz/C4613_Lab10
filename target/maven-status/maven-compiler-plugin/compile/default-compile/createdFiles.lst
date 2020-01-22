@@ -1,0 +1,12 @@
+ca\bcit\comp4613\webapp\employee\presentation\LazySorter.class
+ca\bcit\comp4613\webapp\employee\data\Database.class
+ca\bcit\comp4613\webapp\employee\service\EmployeeServicesImpl.class
+ca\bcit\comp4613\webapp\employee\presentation\LazyEmployeeDataModel.class
+ca\bcit\comp4613\webapp\employee\presentation\EmployeeBean2.class
+ca\bcit\comp4613\webapp\employee\presentation\EmployeeLazyList.class
+ca\bcit\comp4613\webapp\employee\service\EmployeeServices.class
+ca\bcit\comp4613\webapp\employee\data\EmployeeDao.class
+ca\bcit\comp4613\webapp\employee\domain\Employee.class
+ca\bcit\comp4613\webapp\employee\util\PropertiesUtil.class
+ca\bcit\comp4613\webapp\employee\presentation\EmployeeBean.class
+ca\bcit\comp4613\webapp\employee\data\EmployeeDaoImpl.class
